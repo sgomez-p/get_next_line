@@ -6,7 +6,7 @@
 /*   By: sgomez-p <sgomez-p@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 09:54:15 by sgomez-p          #+#    #+#             */
-/*   Updated: 2022/10/25 16:50:45 by sgomez-p         ###   ########.fr       */
+/*   Updated: 2022/10/27 12:54:38 by sgomez-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,18 @@
 
 char	*get_next_line(int fd)
 {
-	char			*line;
-	char			buf[BUFFER_SIZE + 1];
-	static char		stash;
+	char		*line;
+	static char	*left_str;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
-		return (NULL);
-	if (stash)
-	{
-
-	}
-	else if (!stash)
-	{
-		free (stash);
 		return (0);
-	}
-}
+	left_str = ft_read_to_left_str(fd, left_str);
+	if (!left_str)
+		return (NULL);
+	line = ft_get_line(left_str);
+	left_str = ft_new_left_str(left_str);
+	return (line);
+}}
 
 static int	found_new_line(char **s, char **line)
 {
@@ -49,27 +45,49 @@ static int	found_new_line(char **s, char **line)
 */
 }
 
-//void	ft_store_char(int fd)
-
-char	*ft_read_fd(int fd, char *left_str)
+char	*ft_read_next(char *buffer)
 {
-	char	*buff;
-	int		rd;
+	int		i;
+	int		j;
+	char	*line;
 
-	buff = malloc((BUFFER_SIZE + 1) * sizeof (char));
-	if (!buff)
-		return (NULL);
-	rd = 1;
-	while (ft_strlen_newline(left_str)  | && left_str != 0)
+	i = 0;
+	while (buffer[i] && buffer[i] != '\n')
+		i++;
+	if (!buffer[i])
 	{
-		rd = read(fd, buff, BUFFER_SIZE);
-		if (rd == -1)
-		{
-			free (buff);
-			return (NULL);
-		}
-		buff[rd] = '\0';
-
+		free(buffer);
+		return (NULL);
 	}
+	line = ft_calloc((ft_strlen(buffer) - i + 1), sizeof(char));
+	i++;
+	j = 0;
+	while (buffer[i])
+		line[j++] = buffer[i++];
+	line[i] = '\0';
+	free(buffer);
+	return (line);
+}
 
+char	*ft_read_line(char *buffer)
+{
+	int		i;
+	char	*str;
+
+	i = 0;
+	if (!buffer[i])
+		return (NULL);
+	while (!buffer[i] && buffer[i] != '\n')
+		i++;
+	str = calloc(i + 2, sizeof(char)); // no se pq suma 2 pq solo deberia si es final y salto de linea (?)
+	if (!str)
+		return (NULL);
+	i = 0;
+	while (!buffer[i] && buffer[i] != '\n')
+	{	
+		str[i] = buffer[i];
+		i++;
+	}
+	str[i] = '\0';
+	return (str);
 }

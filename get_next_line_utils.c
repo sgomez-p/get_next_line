@@ -6,7 +6,7 @@
 /*   By: sgomez-p <sgomez-p@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 09:54:52 by sgomez-p          #+#    #+#             */
-/*   Updated: 2022/10/25 16:59:03 by sgomez-p         ###   ########.fr       */
+/*   Updated: 2022/10/27 12:53:54 by sgomez-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ size_t	ft_strlen(const char *str)
 		i++;
 	return (i);
 }
-
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {	
