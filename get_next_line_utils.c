@@ -6,30 +6,35 @@
 /*   By: sgomez-p <sgomez-p@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 09:54:52 by sgomez-p          #+#    #+#             */
-/*   Updated: 2022/10/24 13:23:15 by sgomez-p         ###   ########.fr       */
+/*   Updated: 2022/10/25 16:59:03 by sgomez-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_strdup(const char *s1)
+char	*ft_strchr(const char *s, int c)
 {
-	int		i;
-	int		n;
-	char	*p;
+	if (c == '\0')
+		return ((char *)&s[ft_strlen(s)]);
+	while (*s)
+	{
+		if (*s == (char)c)
+			return ((char *)s);
+		++s;
+	}
+	return (0);
+}
+
+size_t	ft_strlen(const char *str)
+{
+	int	i;
 
 	i = 0;
-	n = ft_strlen(s1);
-	p = malloc(sizeof(char) * (n + 1));
-	if (!p)
-		return (NULL);
-	while (i <= n)
-	{
-		p[i] = s1[i];
+	while (str[i] != '\0')
 		i++;
-	}
-	return (p);
+	return (i);
 }
+
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {	
@@ -57,33 +62,4 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	}
 	memory[j] = 0;
 	return (memory);
-}
-
-char	*ft_substr(char const *s, unsigned int start, size_t len)
-{
-	char	*substr;
-	int		i;
-
-	i = 0;
-	if (!s)
-		return (NULL);
-	if (start >= ft_strlen(s))
-	{
-		substr = (char *)malloc(sizeof(char) * 1);
-		if (!substr)
-			return (NULL);
-		substr[0] = 0;
-		return (substr);
-	}
-	if (len > ft_strlen(s))
-		len = ft_strlen(s);
-	substr = (char *)malloc(sizeof(char) * (len + 1));
-	if (!substr)
-		return (NULL);
-	while (len-- > 0)
-	{
-		substr[i++] = s[start++];
-	}
-	substr[i] = 0;
-	return (substr);
 }
