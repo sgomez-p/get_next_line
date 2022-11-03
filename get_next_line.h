@@ -5,10 +5,11 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sgomez-p <sgomez-p@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/24 09:54:48 by sgomez-p          #+#    #+#             */
-/*   Updated: 2022/10/24 13:31:51 by sgomez-p         ###   ########.fr       */
+/*   Created: 2022/10/28 10:46:42 by sgomez-p          #+#    #+#             */
+/*   Updated: 2022/10/28 10:46:42 by sgomez-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
@@ -22,17 +23,16 @@
 # include <stdarg.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 5
+#  define BUFFER_SIZE 1000
 # endif
 
-typedef struct s_list
-{
-	char			*content;
-	struct s_list	*next;
-}				t_list;
-
 char	*get_next_line(int fd);
-char	*ft_strdup(const char *s1);
-char	*ft_strjoin(char const *s1, char const *s2);
-char	*ft_substr(char const *s, unsigned int start, size_t len);
+//char	*ft_strdup(const char *s1);
+char	*ft_strjoin(char *buffer, char *buff);
+//char	*ft_substr(char const *s, unsigned int start, size_t len);
+char	*ft_get_line(char *buffer);
+char	*ft_new_line(char *buffer);
+char	*ft_read_buffer(int fd, char *buffer);
+char	*ft_strchr(char *s, int c);
+size_t	ft_strlen(const char *str);
 #endif
