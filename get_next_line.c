@@ -21,11 +21,14 @@ char	*ft_read_buffer(int fd, char *buffer)
 	if (!buff)
 		return (NULL);
 	bytes = 1;
-	while (!ft_strchr(buffer, '\n') && bytes > 0)
+	while (!ft_strchr(buffer, '\n') && bytes != 0)
 	{
 		bytes = read(fd, buff, BUFFER_SIZE);
-		if (bytes <= 0)
-			break ;
+		if (bytes < 0)
+		{
+			free (buff);
+			return (NULL);
+		}
 		buff[bytes] = '\0';
 		buffer = ft_strjoin(buffer, buff);
 	}
@@ -38,8 +41,12 @@ char	*get_next_line(int fd)
 	char		*line;
 	static char	*buffer;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
-		return (0);
+	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
+	{
+		free(buffer);
+		buffer = NULL;
+		return (NULL);
+	}
 	buffer = ft_read_buffer(fd, buffer);
 	if (!buffer)
 		return (NULL);
