@@ -6,7 +6,7 @@
 /*   By: sgomez-p <sgomez-p@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 12:16:26 by sgomez-p          #+#    #+#             */
-/*   Updated: 2022/11/28 10:49:15 by sgomez-p         ###   ########.fr       */
+/*   Updated: 2022/11/28 12:34:41 by sgomez-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char	*ft_read_buffer(int fd, char *buffer)
 char	*get_next_line(int fd)
 {
 	char		*line;
-	static char	*buffer[10240];
+	static char	*buffer[OPEN_MAX];
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 	{

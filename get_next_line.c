@@ -67,7 +67,7 @@ int	main(void)
 	while (i < 7)
 	{
 		line = get_next_line(fd1);
-		printf("%s\n", line);
+		printf("%s", line);
 		free(line);
 		i++;
 	}
