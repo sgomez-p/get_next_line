@@ -54,3 +54,24 @@ char	*get_next_line(int fd)
 	buffer = ft_new_line(buffer);
 	return (line);
 }
+
+/*
+int	main(void)
+{
+	char	*line;
+	int		i;
+	int		fd1;
+
+	fd1 = open("tests/test.txt", O_RDONLY);
+	i = 1;
+	while (i < 7)
+	{
+		line = get_next_line(fd1);
+		printf("%s\n", line);
+		free(line);
+		i++;
+	}
+	close(fd1);
+	return (0);
+}
+*/

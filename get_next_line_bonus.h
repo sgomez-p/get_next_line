@@ -6,7 +6,7 @@
 /*   By: sgomez-p <sgomez-p@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 12:31:24 by sgomez-p          #+#    #+#             */
-/*   Updated: 2022/11/14 12:34:35 by sgomez-p         ###   ########.fr       */
+/*   Updated: 2022/11/27 12:31:19 by sgomez-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,7 @@
 # endif
 
 char	*get_next_line(int fd);
-//char	*ft_strdup(const char *s1);
 char	*ft_strjoin(char *buffer, char *buff);
-//char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_get_line(char *buffer);
 char	*ft_new_line(char *buffer);
 char	*ft_read_content(int fd, char *content);
