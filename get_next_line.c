@@ -66,8 +66,10 @@ int	main(void)
 	i = 1;
 	while (i < 7)
 	{
-		line = get_next_line(fd1);
-		printf("%s", line);
+		if (line)
+            printf("line [%02d]: %s", i, line);
+        else
+            printf("line [%02d]: (null)\n", i);
 		free(line);
 		i++;
 	}
