@@ -96,7 +96,7 @@ char	*ft_new_line(char *buffer)
 {
 	int		i;
 	int		j;
-	char	*line;
+	char	*new_buffer;
 
 	i = 0;
 	while (buffer[i] && buffer[i] != '\n')
@@ -106,14 +106,14 @@ char	*ft_new_line(char *buffer)
 		free(buffer);
 		return (NULL);
 	}
-	line = (char *)malloc(sizeof(char) * (ft_strlen(buffer) - i + 1));
-	if (!line)
+	new_buffer = (char *)malloc(sizeof(char) * (ft_strlen(buffer) - i + 1));
+	if (!new_buffer)
 		return (NULL);
 	i++;
 	j = 0;
 	while (buffer[i])
-		line[j++] = buffer[i++];
-	line[j] = '\0';
+		new_buffer[j++] = buffer[i++];
+	new_buffer[j] = '\0';
 	free(buffer);
-	return (line);
+	return (new_buffer);
 }
